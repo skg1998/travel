@@ -1,4 +1,5 @@
 const express = require('express');
+const bodyparser = require('body-parser');
 const morgan = require('morgan');
 const helmet = require('helmet');
 const mongoose = require('mongoose')
@@ -6,6 +7,8 @@ const cors = require('cors');
 require('dotenv').config()
 
 const Middleware = require('./Middleware')
+const Logs = require('./Api/Logs');
+const bodyParser = require('body-parser');
 
 //runing on port
 const port = process.env.PORT || 5000
@@ -13,6 +16,7 @@ const port = process.env.PORT || 5000
 //initialze app
 const app = express();
 
+app.use(bodyParser.json());
 app.use(morgan('common'));
 app.use(helmet())
 app.use(cors({
@@ -24,6 +28,9 @@ app.get('/',(req,res)=>{
         message:"hello "
     })
 })
+
+//routes
+app.use('/api/logs',Logs)
 
 //middleware
 app.use(Middleware.notFound)
