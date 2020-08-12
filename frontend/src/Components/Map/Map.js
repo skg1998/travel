@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState,useEffect } from 'react';
-import ReactMapGL, { Marker } from 'react-map-gl';
+import ReactMapGL, { Marker,Popup } from 'react-map-gl';
 import {LogEntries} from '../../API'
 
 const  Map =()=> {
@@ -39,13 +39,37 @@ const  Map =()=> {
              key={data._id}
              latitude ={data.latitude}
              longitude = {data.longitude}
-             offsetLeft={-20}
-             offsetTop = {-10}
           >
-            <div>{data.name} </div>
+            <div>
+              <svg 
+                viewBox="0 0 24 24" 
+                style={{
+                  width:`${6*viewport.zoom}px`,
+                  height:`${6*viewport.zoom}px`,
+                  stroke:"#f8c102"
+                }}
+                strokeWidth="2" 
+                fill="none" 
+                strokeLinecap="round" 
+                strokeLinejoin="round"
+                className="css-i6dzq1 marker" 
+              >
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+            </div>
           </Marker>
         ))
       }
+      <Popup
+          latitude={37.78}
+          longitude={-122.41}
+          closeButton={true}
+          closeOnClick={false}
+          onClose={() => this.setState({showPopup: false})}
+          anchor="top" >
+          <div>You are here</div>
+        </Popup>
     </ReactMapGL>
   );
 }
