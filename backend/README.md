@@ -9,3 +9,6 @@
 *End Date - Date
 *Latitude - Number
 *Longitude - Number
+
+
+npx allow things to install anything without install it globally

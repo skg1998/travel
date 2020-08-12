@@ -6,12 +6,6 @@ const requireString = {
     required:true
 }
 
-const requireNumber = {
-    type:Number,
-    required:true
-}
-
-
 var LogEntrySchema = new Schema({
     title:requireString,
     description:String,
@@ -23,18 +17,16 @@ var LogEntrySchema = new Schema({
         default:0
     },
     latitude:{
-        requireNumber,
-        min:-90,
-        max:90
+        type:Number,
+        required:true
     },
     longitude:{
-        requireNumber,
-        min:-180,
-        max:180
+        type:Number,
+        required:true
     },
     visitDate:{
-        required:true,
-        type:Date
+        type:Date,
+        default: Date.now,
     }
 },{
     timestamps:true
